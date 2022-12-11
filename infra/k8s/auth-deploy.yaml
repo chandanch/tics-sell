@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: 'chandockerman/auth'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-deploy
+spec:
+  selector:
+    app: auth
+  ports:
+    - port: 3000
+      protocol: TCP
+      name: auth-port
