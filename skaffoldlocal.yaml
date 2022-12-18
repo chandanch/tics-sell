@@ -5,12 +5,10 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: ticsapp-371614
+  local:
+    push: false
   artifacts:
-    - image: us.gcr.io/ticsapp-371614/auth
+    - image: chandockerman/auth
       context: auth
       docker:
         dockerfile: Dockerfile
