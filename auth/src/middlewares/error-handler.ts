@@ -8,16 +8,21 @@ export const errorHandler = (
 	res: Response,
 	next: NextFunction
 ) => {
-	// console.log(error);
+	console.log(error);
 	if (error instanceof RequestValidationError) {
-		res.status(400).send({
-			message: 'Validation Error',
-			error: error.message,
+		const formattedErrors = error.error.map((errorData) => {
+			return {
+				message: errorData.msg,
+				field: errorData.param,
+			};
 		});
+		const errorResponse = {
+			errors: formattedErrors,
+		};
+		res.status(400).send(errorResponse);
 	} else if (error instanceof DatabaseConnectionError) {
 		res.status(500).send({
-			message: 'Database Error',
-			error: error.message,
+			errors: [{ message: error.reason }],
 		});
 	}
 };
