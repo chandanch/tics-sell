@@ -10,19 +10,12 @@ export const errorHandler = (
 ) => {
 	console.log(error);
 	if (error instanceof RequestValidationError) {
-		const formattedErrors = error.error.map((errorData) => {
-			return {
-				message: errorData.msg,
-				field: errorData.param,
-			};
+		res.status(error.statusCode).send({
+			errors: error.serializeError(),
 		});
-		const errorResponse = {
-			errors: formattedErrors,
-		};
-		res.status(400).send(errorResponse);
 	} else if (error instanceof DatabaseConnectionError) {
-		res.status(500).send({
-			errors: [{ message: error.reason }],
+		res.status(error.statusCode).send({
+			errors: error.serializeError(),
 		});
 	}
 };

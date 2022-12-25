@@ -19,7 +19,7 @@ router.post(
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
-			throw new RequestValidationError(errors.array());
+			throw new RequestValidationError(errors.array(), 400);
 		}
 
 		throw new DatabaseConnectionError();
