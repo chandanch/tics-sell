@@ -1,6 +1,7 @@
 import express from 'express';
 import { json } from 'body-parser';
 import 'express-async-errors';
+import mongoose from 'mongoose';
 
 import { currentuserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
@@ -28,6 +29,18 @@ app.all('*', async () => {
 // add all error handling middileware functions
 app.use(errorHandler);
 
-app.listen(3000, () => {
-	console.log('App Started on 3000');
-});
+const initializeApp = async () => {
+	try {
+		await mongoose.connect('mongodb://auth-mongodb-service:27017/auth');
+		mongoose.set('strictQuery', false);
+		console.log('Connected to DB');
+	} catch (error) {
+		console.log('Error connecting to DB:', error);
+	}
+
+	app.listen(3000, () => {
+		console.log('App Started on 3000');
+	});
+};
+
+initializeApp();
