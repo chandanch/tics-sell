@@ -11,7 +11,7 @@ interface IUserCreate {
  * that the User Mongoose Model must have
  */
 interface IUserCreateModel extends mongoose.Model<IUser> {
-	build: (user: IUserCreate) => IUser;
+	build(user: IUserCreate): IUser;
 }
 
 /**
@@ -33,15 +33,10 @@ const userSchema = new mongoose.Schema({
 	},
 });
 
-const User = mongoose.model<IUser, IUserCreateModel>('User', userSchema);
-
 userSchema.statics.build = (user: IUserCreate) => {
 	return new User(user);
 };
 
-const user = User.build({
-	email: 'ddd',
-	password: 'ddd',
-});
+const User = mongoose.model<IUser, IUserCreateModel>('User', userSchema);
 
 export { User };
