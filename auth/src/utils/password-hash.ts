@@ -11,7 +11,17 @@ export class PasswordHash {
 		return `${hashBuffer.toString('hex')}.${salt}`;
 	}
 
-	static decodeHash(suppliedPassword: string, storedPassword: string) {}
+	static async compareHash(suppliedPassword: string, storedPassword: string) {
+		const [storedPasswordHash, storedPasswordsalt] = storedPassword;
+		const salt = randomBytes(8).toString('hex');
+		const suppliedPasswordHashBuffer = (await scryptAsync(
+			suppliedPassword,
+			salt,
+			64
+		)) as Buffer;
+
+		return suppliedPasswordHashBuffer.toString('hex') === storedPasswordHash;
+	}
 }
 
 PasswordHash.generateHash('dddd').then((data) => console.log(data));
