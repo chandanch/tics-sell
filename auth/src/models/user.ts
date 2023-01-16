@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { PasswordHash } from '../utils/password-hash';
 
 // Describes all properties required to an create user
 interface IUserCreate {
@@ -36,6 +37,17 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.build = (user: IUserCreate) => {
 	return new User(user);
 };
+
+userSchema.pre('save', async function (done) {
+	if (this.isModified('password')) {
+		const hashedPassword = await PasswordHash.generateHash(
+			this.get('password')
+		);
+		this.set('password', hashedPassword);
+	}
+
+	done();
+});
 
 const User = mongoose.model<IUser, IUserCreateModel>('User', userSchema);
 
