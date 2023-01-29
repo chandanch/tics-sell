@@ -41,7 +41,7 @@ router.post(
 					id: user.id,
 					email: user.email,
 				},
-				'keysign'
+				process.env.JWT_KEY!
 			);
 			console.log(userJwt, user);
 			req.session = {

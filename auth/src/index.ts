@@ -42,6 +42,10 @@ app.all('*', async () => {
 app.use(errorHandler);
 
 const initializeApp = async () => {
+	if (!process.env.JWT_KEY) {
+		throw new Error('JWT Key is missing, aborting app load');
+	}
+
 	try {
 		await mongoose.connect('mongodb://auth-mongodb-service:27017/auth');
 		mongoose.set('strictQuery', false);
