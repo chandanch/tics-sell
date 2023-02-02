@@ -12,8 +12,7 @@ export class PasswordHash {
 	}
 
 	static async compareHash(suppliedPassword: string, storedPassword: string) {
-		const [storedPasswordHash, storedPasswordsalt] = storedPassword;
-		const salt = randomBytes(8).toString('hex');
+		const [storedPasswordHash, salt] = storedPassword.split('.');
 		const suppliedPasswordHashBuffer = (await scryptAsync(
 			suppliedPassword,
 			salt,
