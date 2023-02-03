@@ -12,7 +12,7 @@ router.get('/api/users/currentuser', (req, res) => {
 		const userData = jwt.verify(req.session?.jwt, process.env.JWT_KEY!);
 		res.status(200).send({ currentUser: userData });
 	} catch (error) {
-		res.send({ currentUser: null });
+		res.status(200).send({ currentUser: null });
 	}
 });
 
