@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { UnAuthorizedError } from '../errors/unauthorized-error';
 
 interface UserPayload {
 	email: string;
@@ -32,6 +33,7 @@ export const currentUser = (
 		req.currentUser = payload;
 	} catch (error) {
 		console.log(error);
+		throw new UnAuthorizedError('Unauthorized, Try Again');
 	}
 	next();
 };
