@@ -11,6 +11,16 @@ beforeAll(async () => {
 	await mongoose.connect(mongoUri, {});
 });
 
+beforeEach(async () => {
+	// get all collections from mongodb
+	const collections = await mongoose.connection.db.collections();
+
+	for (let collection of collections) {
+		// delete all collections
+		await collection.deleteMany({});
+	}
+});
+
 afterAll(async () => {
 	if (mongo) {
 		// Stop Mongo DB & mem server
