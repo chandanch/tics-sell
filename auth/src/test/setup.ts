@@ -3,9 +3,12 @@ import mongoose from 'mongoose';
 
 let mongo: any;
 beforeAll(async () => {
+	// set env varialbe -- To be changed!
+	process.env.JWT_KEY = 'wde33';
+
 	//instantiate MongoMemoryServer
-	mongo = new MongoMemoryServer();
-	const mongoUri = await mongo.getUri();
+	mongo = await MongoMemoryServer.create();
+	const mongoUri = mongo.getUri();
 
 	// connect mongoose to mongo mem server
 	await mongoose.connect(mongoUri, {});
