@@ -39,3 +39,10 @@ it('should not allow duplicate email', async () => {
 		.send({ email: 'dd@ee.com', password: 'ds22213d12' });
 	expect(userCreateResponse2.statusCode).toEqual(400);
 });
+
+it('should set cookie header on sucessful signup', async () => {
+	const response = await request(app)
+		.post(signupUrl)
+		.send({ email: 'dd@ee.com', password: 'ds22213d12' });
+	expect(response.get('Set-Cookie')).toBeDefined();
+});
