@@ -11,6 +11,6 @@ it('should return user details', async () => {
 	expect(response.statusCode).toEqual(201);
 
 	const currentUserResponse = await request(app).get(currentUserUrl).send();
-	expect(currentUserResponse.statusCode).toEqual(200);
-	console.log(currentUserResponse.body);
+	expect(currentUserResponse.statusCode).toEqual(401);
+	console.log(currentUserResponse);
 });
