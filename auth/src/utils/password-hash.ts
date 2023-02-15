@@ -23,4 +23,4 @@ export class PasswordHash {
 	}
 }
 
-PasswordHash.generateHash('dddd').then((data) => console.log(data));
+// PasswordHash.generateHash('dddd').then((data) => console.log(data));
