@@ -1,16 +1,10 @@
 import request from 'supertest';
 import { app } from '../../app';
 
-const signupUrl = '/api/users/signup';
 const currentUserUrl = '/api/users/currentuser';
 
 it('should return user details', async () => {
-	const authResponse = await request(app)
-		.post(signupUrl)
-		.send({ email: 'dd@ee.com', password: 'password' });
-	expect(authResponse.statusCode).toEqual(201);
-
-	const cookie = authResponse.get('Set-Cookie');
+	const cookie = await global.signup();
 	const currentUserResponse = await request(app)
 		.get(currentUserUrl)
 		.set('Cookie', cookie)
@@ -19,4 +13,12 @@ it('should return user details', async () => {
 	const { email, id } = currentUserResponse.body.currentUser;
 
 	expect(email).toEqual('dd@ee.com');
+});
+
+it('should return 401 unauthorized if not signed in', async () => {
+	const currentUserResponse = await request(app)
+		.get(currentUserUrl)
+		// .set('Cookie', '')
+		.send();
+	expect(currentUserResponse.statusCode).toEqual(401);
 });
