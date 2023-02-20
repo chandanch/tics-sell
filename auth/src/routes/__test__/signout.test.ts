@@ -1,7 +1,6 @@
 import request from 'supertest';
 import { app } from '../../app';
 
-const signinUrl = '/api/users/signin';
 const signupUrl = '/api/users/signup';
 const signoutUrl = '/api/users/signout';
 

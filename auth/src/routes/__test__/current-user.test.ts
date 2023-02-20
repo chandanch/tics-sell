@@ -16,9 +16,6 @@ it('should return user details', async () => {
 });
 
 it('should return 401 unauthorized if not signed in', async () => {
-	const currentUserResponse = await request(app)
-		.get(currentUserUrl)
-		// .set('Cookie', '')
-		.send();
+	const currentUserResponse = await request(app).get(currentUserUrl).send();
 	expect(currentUserResponse.statusCode).toEqual(401);
 });
