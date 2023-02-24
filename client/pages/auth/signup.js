@@ -1,13 +1,22 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 const SignUp = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [validationErrors, setValidationErrors] = useState([]);
 
-	const onSubmit = (event) => {
+	const onSubmit = async (event) => {
 		event.preventDefault();
-
-		console.log(email, password);
+		try {
+			const response = await axios.post('/api/users/signup', {
+				email,
+				password,
+			});
+			console.log(response.data);
+		} catch (error) {
+			setValidationErrors(error.response.data.errors);
+		}
 	};
 
 	return (
@@ -32,6 +41,15 @@ const SignUp = () => {
 				/>
 			</div>
 			<button className="btn btn-primary">Sign Up</button>
+			{validationErrors.length > 0 && (
+				<div className="alert alert-danger" style={{ marginTop: '10px' }}>
+					<h4>Whoops Signup Failed</h4>
+					<p>See below for errors:</p>
+					{validationErrors.map((error) => (
+						<li key={error.message}>{error.message}</li>
+					))}
+				</div>
+			)}
 		</form>
 	);
 };
