@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const useRequest = (url, method, body) => {
+const useRequest = ({ url, method, body }) => {
 	const [errors, setErrors] = useState(null);
 
 	const doRequest = async () => {
 		try {
-			const response = await axios.post('/api/users/signup', {
-				email,
-				password,
-			});
+			const response = await axios[method](url, body);
 			console.log(response.data);
 		} catch (error) {
 			const errors = error.response.data.errors;
