@@ -4,17 +4,18 @@ import axios from 'axios';
 const useRequest = ({ url, method, body }) => {
 	const [errors, setErrors] = useState(null);
 
-	const doRequest = async () => {
+	const makeRequest = async () => {
 		try {
+			setErrors(null);
 			const response = await axios[method](url, body);
 			console.log(response.data);
 		} catch (error) {
-			const errors = error.response.data.errors;
+			const requestErrors = error.response.data.errors;
 			setErrors(
 				<div className="alert alert-danger" style={{ marginTop: '10px' }}>
 					<h4>Whoops Signup Failed</h4>
 					<p>See below for errors:</p>
-					{validationErrors.map((error) => (
+					{requestErrors.map((error) => (
 						<li key={error.message}>{error.message}</li>
 					))}
 				</div>
@@ -22,7 +23,7 @@ const useRequest = ({ url, method, body }) => {
 		}
 	};
 
-	return { doRequest, errors };
+	return { makeRequest, errors };
 };
 
 export default useRequest;
