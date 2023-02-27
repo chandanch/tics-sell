@@ -1,11 +1,17 @@
-import React from "react";
+import React from 'react';
 
-const HomePage = () => {
-  return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
-  );
+const HomePage = ({ color }) => {
+	return (
+		<div>
+			<h1 style={{ color }}>HomePage</h1>
+		</div>
+	);
+};
+
+HomePage.getInitialProps = () => {
+	console.log('In Server');
+
+	return { color: red };
 };
 
 export default HomePage;
