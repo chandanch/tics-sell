@@ -1,17 +1,21 @@
 import React from 'react';
+import axios from 'axios';
 
-const HomePage = ({ color }) => {
+const HomePage = ({ currentUser }) => {
+	console.log(currentUser);
 	return (
 		<div>
-			<h1 style={{ color }}>HomePage</h1>
+			<h1>HomePage</h1>
 		</div>
 	);
 };
 
-HomePage.getInitialProps = () => {
-	console.log('In Server');
-
-	return { color: 'red' };
+HomePage.getInitialProps = async () => {
+	if (typeof window === undefined) {
+	} else {
+		const { data } = await axios.get('/api/users/currentuser');
+		return data;
+	}
 };
 
 // export function getServerSideProps() {
