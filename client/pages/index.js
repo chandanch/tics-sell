@@ -8,18 +8,18 @@ const HomePage = ({ color }) => {
 	);
 };
 
-// HomePage.getInitialProps = () => {
-// 	console.log('In Server');
+HomePage.getInitialProps = () => {
+	console.log('In Server');
 
-// 	return { color: 'red' };
-// };
+	return { color: 'red' };
+};
 
-export function getServerSideProps() {
-	return {
-		props: {
-			color: 'blue',
-		},
-	};
-}
+// export function getServerSideProps() {
+// 	return {
+// 		props: {
+// 			color: 'blue',
+// 		},
+// 	};
+// }
 
 export default HomePage;
