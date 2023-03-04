@@ -16,6 +16,7 @@ const HomePage = ({ currentUser }) => {
 };
 
 HomePage.getInitialProps = async (context) => {
+	console.log('HomePage!!');
 	const client = await createClient(context);
 	try {
 		const { data } = await client.get('/api/users/currentuser');
