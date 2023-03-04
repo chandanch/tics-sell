@@ -22,7 +22,7 @@ HomePage.getInitialProps = async (context) => {
 		const { data } = await client.get('/api/users/currentuser');
 		return data;
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 		return {};
 	}
 };
