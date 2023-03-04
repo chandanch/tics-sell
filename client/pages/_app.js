@@ -5,7 +5,7 @@ import createClient from '../utils/create-api-client';
 const MyApp = ({ Component, pageProps, currentUser }) => {
 	return (
 		<div>
-			<Header />
+			<Header currentUser={currentUser} />
 			<Component {...pageProps} />
 		</div>
 	);
