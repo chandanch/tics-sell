@@ -1,5 +1,5 @@
 {
-  "name": "shared",
+  "name": "@chancorp/shared",
   "version": "1.0.0",
   "description": "A module consisting of reusable components used by other microservices",
   "main": "index.js",
