@@ -1,6 +1,6 @@
 {
   "name": "@chancorp/shared",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A module consisting of reusable code and utility functions that can be used by other microservices",
   "main": "index.js",
   "scripts": {
