@@ -12,3 +12,5 @@ class Hockeer implements Player {
     this.score = score;
   }
 }
+
+export default Hockeer;
