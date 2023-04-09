@@ -2,7 +2,11 @@
   "name": "@chancorp/shared",
   "version": "1.0.3",
   "description": "A module consisting of reusable code and utility functions that can be used by other microservices",
-  "main": "index.js",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "npm run clean && tsc"
