@@ -1,7 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import { currentUser } from '../middlewares/current-user';
-import { requireAuth } from '../middlewares/require-auth';
+import { currentUser } from '@chancorp/shared';
+import { requireAuth } from '@chancorp/shared';
 
 const router = express.Router();
 

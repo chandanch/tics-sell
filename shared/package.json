@@ -1,6 +1,6 @@
 {
   "name": "@chancorp/shared",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A module consisting of reusable code and utility functions that can be used by other microservices",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "author": "chandanch",
   "license": "ISC",
-  "dependencies":  {
+  "dependencies": {
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
     "@types/jsonwebtoken": "^9.0.1",

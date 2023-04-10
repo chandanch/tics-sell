@@ -17,6 +17,7 @@
   "author": "chandanch",
   "license": "ISC",
   "dependencies": {
+    "@chancorp/shared": "^1.2.0",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.14",
     "@types/jsonwebtoken": "^9.0.1",

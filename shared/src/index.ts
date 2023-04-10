@@ -1,4 +1,4 @@
-// below statement would import everything from a specified folder and export it immediately
+// below statement would import everything from a specified folder and export it immediately..
 export * from './errors/bad-request-error';
 export * from './errors/custom-error';
 export * from './errors/database-connection-error';

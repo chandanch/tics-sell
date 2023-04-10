@@ -2,9 +2,9 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
-import { requestValidator } from '../middlewares/request-validator';
+import { requestValidator } from '@chancorp/shared';
 import { User } from '../models/user';
-import { BadRequestError } from '../errors/bad-request-error';
+import { BadRequestError } from '@chancorp/shared';
 import { PasswordHash } from '../utils/password-hash';
 
 const router = express.Router();
