@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/ticsapp-371614/auth
+          image: 'chandockerman/auth'
           env:
             - name: JWT_KEY
               valueFrom:

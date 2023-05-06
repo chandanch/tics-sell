@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: chandockerman/client
+          image: us.gcr.io/ticsapp-383302/client
 
 
 ---
