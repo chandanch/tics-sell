@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tickets-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tickets
+  template:
+    metadata:
+      labels:
+        app: tickets
+    spec:
+      containers:
+        - name: tickets
+          image: 'chandockerman/tickets'
+          env:
+            - name:  JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: JWT_KEY
+                  name: jwt-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tickets-service
+spec:
+  ports:
+    - name: tickets-port
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  
+    
