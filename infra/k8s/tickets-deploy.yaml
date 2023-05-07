@@ -16,6 +16,8 @@ spec:
         - name: tickets
           image: 'chandockerman/tickets'
           env:
+            - name: DB_URI
+              value: 'mongodb://tickets-mongodb-service:27017/tickets'
             - name:  JWT_KEY
               valueFrom:
                 secretKeyRef:
