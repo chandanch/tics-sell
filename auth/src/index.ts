@@ -7,8 +7,12 @@ const initializeApp = async () => {
 		throw new Error('JWT Key is missing, aborting app load');
 	}
 
+	if (!process.env.DB_URI) {
+		throw new Error('DB URI does not exist');
+	}
+
 	try {
-		await mongoose.connect('mongodb://auth-mongodb-service:27017/auth');
+		await mongoose.connect(process.env.DB_URI);
 		mongoose.set('strictQuery', false);
 		console.log('Connected to DB');
 	} catch (error) {
