@@ -8,10 +8,16 @@ it('should consists of a router hanlder for post requests', async () => {
 	expect(response.statusCode).not.toEqual(404);
 });
 
-it('should be accessible only by signed in users', async () => {
+it('should not be accessible for users who not signed-in', async () => {
 	const response = await request(app).post(tickets_url).send({});
 
 	expect(response.statusCode).toEqual(401);
+});
+
+it('should be accessible only by signed in users', async () => {
+	const response = await request(app).post(tickets_url).send({});
+
+	expect(response.statusCode).toEqual(200);
 });
 
 it('should create a ticket if valid details are provided', () => {});

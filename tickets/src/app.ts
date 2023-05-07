@@ -2,7 +2,7 @@ import express from 'express';
 import { json } from 'body-parser';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
-import { NotFoundError, errorHandler } from '@chancorp/shared';
+import { NotFoundError, currentUser, errorHandler } from '@chancorp/shared';
 import { createTicketRouter } from './routes/create';
 
 const app = express();
@@ -20,6 +20,7 @@ app.use(
 );
 
 // add all middlewares
+app.use(currentUser);
 
 // add all routes here
 app.use(createTicketRouter);
