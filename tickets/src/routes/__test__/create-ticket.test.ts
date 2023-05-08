@@ -15,7 +15,12 @@ it('should not be accessible for users who not signed-in', async () => {
 });
 
 it('should be accessible only by signed in users', async () => {
-	const response = await request(app).post(tickets_url).send({});
+	const cookie = global.signup();
+	console.log(cookie);
+	const response = await request(app)
+		.post(tickets_url)
+		.set('Cookie', cookie)
+		.send({});
 
 	expect(response.statusCode).toEqual(200);
 });
