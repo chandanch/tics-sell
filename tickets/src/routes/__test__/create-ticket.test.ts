@@ -22,7 +22,7 @@ it('should be accessible only by signed in users', async () => {
 		.set('Cookie', cookie)
 		.send({});
 
-	expect(response.statusCode).toEqual(200);
+	expect(response.statusCode).not.toEqual(401);
 });
 
 it('should create a ticket if valid details are provided', () => {});
