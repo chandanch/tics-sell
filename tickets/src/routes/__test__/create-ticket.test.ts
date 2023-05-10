@@ -25,8 +25,6 @@ it('should be accessible only by signed in users', async () => {
 	expect(response.statusCode).not.toEqual(401);
 });
 
-it('should create a ticket if valid details are provided', () => {});
-
 it('should return error if invalid price is provided', async () => {
 	const response = await request(app)
 		.post(ticketsUrl)
@@ -43,4 +41,12 @@ it('should return error if invalid title is provided', async () => {
 		.send({ price: 30 });
 
 	expect(response.statusCode).toEqual(400);
+});
+
+it('should create a ticket if valid details are provided', async () => {
+	const response = await request(app)
+		.post(ticketsUrl)
+		.send({ title: 'New Ticker', price: 20 });
+
+	expect(response.statusCode).toEqual(201);
 });
