@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { app } from '../../app';
+import { Ticket } from '../../models/tickets';
 
 const ticketsUrl = '/api/tickets';
 
@@ -48,5 +49,9 @@ it('should create a ticket if valid details are provided', async () => {
 		.post(ticketsUrl)
 		.send({ title: 'New Ticker', price: 20 });
 
+	const tickets = await Ticket.find({});
+
 	expect(response.statusCode).toEqual(201);
+	expect(response.body.id).toBeDefined();
+	expect(tickets.length).toEqual(1);
 });
