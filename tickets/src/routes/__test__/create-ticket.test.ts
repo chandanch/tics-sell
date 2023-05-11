@@ -47,6 +47,7 @@ it('should return error if invalid title is provided', async () => {
 it('should create a ticket if valid details are provided', async () => {
 	const response = await request(app)
 		.post(ticketsUrl)
+		.set('Cookie', global.signup())
 		.send({ title: 'New Ticker', price: 20 });
 
 	const tickets = await Ticket.find({});
