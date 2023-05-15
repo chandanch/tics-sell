@@ -54,5 +54,14 @@ it('should create a ticket if valid details are provided', async () => {
 
 	expect(response.statusCode).toEqual(201);
 	expect(response.body.id).toBeDefined();
+});
+
+it('should store ticket in DB', async () => {
+	const response = await request(app)
+		.post(ticketsUrl)
+		.set('Cookie', global.signup())
+		.send({ title: 'New Ticker', price: 20 });
+
+	const tickets = await Ticket.find({});
 	expect(tickets.length).toEqual(1);
 });
