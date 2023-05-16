@@ -1,15 +1,17 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/tickets';
+import mongoose from 'mongoose';
 
 const ticketsUrl = '/api/tickets';
 
 it('should return 404 for invalid ticket ID', async () => {
+	const id = new mongoose.Types.ObjectId().toHexString();
 	const response = await request(app)
-		.get(`${ticketsUrl}/544545`)
+		.get(`${ticketsUrl}/${id}`)
 		.set('Cookie', global.signup())
 		.send();
-
+	console.log(response.body);
 	expect(response.statusCode).toEqual(404);
 });
 
