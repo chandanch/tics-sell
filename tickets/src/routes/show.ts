@@ -6,5 +6,8 @@ import { Ticket } from '../models/tickets';
 const router = express.Router();
 
 router.get('/api/tickets/:id', async (request: Request, response: Response) => {
-	response.send({});
+	const ticket = await Ticket.findById(request.params.id);
+	response.status(200).send(ticket);
 });
+
+export { router as showTicketsRouter };
