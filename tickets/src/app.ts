@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import { NotFoundError, currentUser, errorHandler } from '@chancorp/shared';
 import { createTicketRouter } from './routes/create';
 import { showTicketsRouter } from './routes/show';
+import { getAllTicketsRouter } from './routes';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(currentUser);
 // add all routes here
 app.use(createTicketRouter);
 app.use(showTicketsRouter);
+app.use(getAllTicketsRouter);
 
 app.all('*', async () => {
 	throw new NotFoundError();
