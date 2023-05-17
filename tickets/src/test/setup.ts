@@ -48,7 +48,10 @@ afterAll(async () => {
  */
 global.signup = () => {
 	// generate jwt
-	const user = { email: 'test@ee.com', id: 23 };
+	const user = {
+		email: 'test@ee.com',
+		id: new mongoose.Types.ObjectId().toHexString(),
+	};
 	const userJwt = jwt.sign(user, process.env.JWT_KEY!);
 
 	const session = { jwt: userJwt };

@@ -6,6 +6,7 @@ import { NotFoundError, currentUser, errorHandler } from '@chancorp/shared';
 import { createTicketRouter } from './routes/create';
 import { showTicketsRouter } from './routes/show';
 import { getAllTicketsRouter } from './routes';
+import { updateTicketRouter } from './routes/update';
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(currentUser);
 app.use(createTicketRouter);
 app.use(showTicketsRouter);
 app.use(getAllTicketsRouter);
+app.use(updateTicketRouter);
 
 app.all('*', async () => {
 	throw new NotFoundError();
