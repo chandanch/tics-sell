@@ -28,7 +28,6 @@ router.put(
 	],
 	requestValidator,
 	async (req: Request, res: Response) => {
-		console.log('Rec ID', req.params.id);
 		const ticket = await Ticket.findById(req.params.id);
 
 		if (!ticket) {
