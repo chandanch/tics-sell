@@ -9,7 +9,7 @@ import { json } from 'express';
 let mongo: any;
 
 declare global {
-	var signup: () => string[];
+	var signup: (id?: string) => string[];
 }
 
 beforeAll(async () => {
@@ -46,11 +46,11 @@ afterAll(async () => {
 /**
  * @desc generates a custom cookie
  */
-global.signup = () => {
+global.signup = (id?: string) => {
 	// generate jwt
 	const user = {
 		email: 'test@ee.com',
-		id: new mongoose.Types.ObjectId().toHexString(),
+		id: id ? id : new mongoose.Types.ObjectId().toHexString(),
 	};
 	const userJwt = jwt.sign(user, process.env.JWT_KEY!);
 
