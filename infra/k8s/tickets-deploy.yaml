@@ -29,6 +29,8 @@ kind: Service
 metadata:
   name: tickets-service
 spec:
+  selector:
+    app: tickets
   ports:
     - name: tickets-port
       port: 3000
