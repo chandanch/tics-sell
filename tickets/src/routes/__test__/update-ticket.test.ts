@@ -19,7 +19,7 @@ it('should return 404 for invalid ticket ID', async () => {
 	const response = await request(app)
 		.put(`${ticketsUrl}/${id}`)
 		.set('Cookie', global.signup())
-		.send({});
+		.send({ title: 'edede', price: 22 });
 
 	expect(response.statusCode).toEqual(404);
 });
@@ -50,15 +50,17 @@ it('should return 401 if ticket is not created by user', async () => {
 });
 
 it('should return 400 if invalid title or price is specified', async () => {
-	const cookie = global.signup();
+	const userId = new mongoose.Types.ObjectId().toHexString();
+	const cookie = global.signup(userId);
+	const createdTicket = await createTicket('A new sd', 12, userId);
 	await request(app)
-		.put(`${ticketsUrl}/2`)
+		.put(`${ticketsUrl}/${createdTicket.id}`)
 		.set('Cookie', cookie)
 		.send({ title: '', price: 22 })
 		.expect(400);
 
 	await request(app)
-		.put(`${ticketsUrl}/2`)
+		.put(`${ticketsUrl}/${createdTicket.id}`)
 		.set('Cookie', cookie)
 		.send({ title: 'FDefd', price: -22 })
 		.expect(400);

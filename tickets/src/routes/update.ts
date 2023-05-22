@@ -23,8 +23,10 @@ router.put(
 		body('price')
 			.not()
 			.isEmpty()
-			.isFloat()
-			.withMessage('Price is required and must be a number'),
+			.isFloat({ gt: 0 })
+			.withMessage(
+				'Price is required and must be a number with value greater than 0'
+			),
 	],
 	requestValidator,
 	async (req: Request, res: Response) => {
